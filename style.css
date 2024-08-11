@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #D9F7F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.screen {
+    width: 300px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: left;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.power-usage {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.power-icon, .room-icon, .switch-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #A0E4E1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    margin-right: 10px;
+}
+
+.power-info {
+    font-size: 16px;
+    color: #555;
+}
+
+.rooms, .switches {
+    display: flex;
+    justify-content: space-between;
+}
+
+.room, .switch {
+    width: 120px;
+    height: 140px;
+    background-color: #E1F7F6;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.room-icon, .switch-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #A0E4E1;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    color: #ffffff;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}

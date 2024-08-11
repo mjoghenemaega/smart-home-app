@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home System</title>
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        async function fetchData() {
+            const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=n7VXgObEH5mV1CQaPyBSwhDp2O1ZmCM7uWBFGxeIvcizP2K1z0Zj4zimSCHD7U6LgvZlb0bzMGl0pU7ciqyzXuAQc976QGcvm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ5eeabAGVkqTWyVJ6HmiOYGu8O3PicxwDN5bFRvsaPQSTkheMRcxP3yKIRu-YafiZj0lxK4lopuXHDT6PSFOnwG6oWWOhYhW3hmlH4XOH3v&lib=MJTSqtoe12MhGuXaI2ikNncu8T5miUBfk');
+            const data = await response.text();
+            const [status, temperature, humidity, switch1, switch2] = data.split(',');
+
+            document.getElementById('status').innerText = status;
+            document.getElementById('temperature').innerText = temperature + '°C';
+            document.getElementById('humidity').innerText = humidity + '%';
+            document.getElementById('switch1').innerText = switch1;
+            document.getElementById('switch2').innerText = switch2;
+        }
+
+        setInterval(fetchData, 10000);
+
+        window.onload = fetchData;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="header">
+                <p>Hello Mj,</p>
+                <p>Welcome Home</p>
+            </div>
+            <div class="power-usage">
+                <div class="power-icon"><i class="fas fa-bolt"></i></div>
+                <div class="power-info">
+                    <p id="status"></p>
+                </div>
+            </div>
+            <div class="rooms">
+                <div class="room">
+                    <div class="room-icon"><i class="fas fa-thermometer-half"></i></div>
+                    <p>Temperature</p>
+                    <p id="temperature"></p>
+                </div>
+                <div class="room">
+                    <div class="room-icon"><i class="fas fa-tint"></i></div>
+                    <p>Humidity</p>
+                    <p id="humidity"></p>
+                </div>
+            </div>
+            <div class="switches">
+                <div class="switch">
+                    <p>Switch 1</p>
+                    <div class="switch-icon"><i class="fas fa-toggle-on"></i></div>
+                    <p id="switch1"></p>
+                </div>
+                <div class="switch">
+                    <p>Switch 2</p>
+                    <div class="switch-icon"><i class="fas fa-toggle-off"></i></div>
+                    <p id="switch2"></p>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Quick Remote Access</p>
+                <p>Click here to connect with your phone.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
