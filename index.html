@@ -18,6 +18,15 @@
             document.getElementById('humidity').innerText = humidity + '%';
             document.getElementById('switch1').innerText = switch1;
             document.getElementById('switch2').innerText = switch2;
+
+
+                   // Check if the temperature is greater than or equal to 30°C
+            const tempBox = document.querySelector('.temperature-box');
+            if (parseFloat(temperature) >= 30) {
+                tempBox.style.backgroundColor = '#FF5E5E'; // Red color
+            } else {
+                tempBox.style.backgroundColor = '#E1F7F6'; // Default color
+            }
         }
 
         setInterval(fetchData, 10000);
@@ -39,11 +48,12 @@
                 </div>
             </div>
             <div class="rooms">
-                <div class="room">
-                    <div class="room-icon"><i class="fas fa-thermometer-half"></i></div>
-                    <p>Temperature</p>
-                    <p id="temperature"></p>
-                </div>
+                <div class="room ">
+    <div class="room-icon temperature-box"><i class="fas fa-thermometer-half"></i></div>
+    <p>Temperature</p>
+    <p id="temperature"></p>
+</div>
+
                 <div class="room">
                     <div class="room-icon"><i class="fas fa-tint"></i></div>
                     <p>Humidity</p>
