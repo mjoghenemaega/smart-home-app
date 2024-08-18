@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Home System</title>
     <!-- Add Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script>
         async function fetchData() {
@@ -15,66 +15,132 @@
 
             document.getElementById('status').innerText = status;
             document.getElementById('temperature').innerText = temperature + '°C';
-            document.getElementById('humidity').innerText = humidity + '%';
-            document.getElementById('switch1').innerText = switch1;
-            document.getElementById('switch2').innerText = switch2;
+            document.getElementById('humidity').innerText = humidity + ' V';
+            document.getElementById('switch1').innerText = switch1 + ' A';
+            document.getElementById('switch2').innerText = switch2 + ' W';
 
-
-                   // Check if the temperature is greater than or equal to 30°C
+            // Check if the temperature is greater than or equal to 30°C
             const tempBox = document.querySelector('.temperature-box');
             if (parseFloat(temperature) >= 30) {
                 tempBox.style.backgroundColor = '#FF5E5E'; // Red color
             } else {
                 tempBox.style.backgroundColor = '#E1F7F6'; // Default color
             }
+
+            // Display sun or moon icon based on the time of day
+            const timeIcon = document.getElementById('time-icon');
+            const currentHour = new Date().getHours();
+            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            if (currentHour >= 6 && currentHour < 18) {
+                timeIcon.className = 'fas fa-sun'; // Daytime: Sun icon
+            } else {
+                timeIcon.className = 'fas fa-moon'; // Evening/Night: Moon icon
+            }
+
+            // Display the current time
+            document.getElementById('current-time').innerText = currentTime;
         }
 
         setInterval(fetchData, 10000);
 
         window.onload = fetchData;
     </script>
+    <style>
+        .container {
+            position: relative;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .screen {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #15292B;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header p {
+            margin: 0;
+            font-size: 1.2em;
+            color: #E1F7F6;;
+        }
+        .power-usage, .rooms, .switches {
+            
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .power-icon, .room-icon, .switch-icon {
+            font-size: 2em;
+            
+        }
+        .room, .switch {
+            text-align: center;
+        }
+        .temperature-box {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #E1F7F6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #time-icon {
+            font-size: 2.5em;
+        }
+        #current-time {
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="screen">
             <div class="header">
+                <div style="color: #E1F7F6; text-align: center;" id="time-icon"> <span style="font-size: 1rem;" id="current-time"></span></div>
+              <br>
                 <p>Hello Mj,</p>
-                <p>Welcome Home</p>
+                <p style="font-size: 1.2rem;">Welcome Home   </p>
             </div>
-            <div class="power-usage">
+             <div class="power-usage">
                 <div class="power-icon"><i class="fas fa-bolt"></i></div>
-                <div class="power-info">
+                <div class="power-info" style="color: #fff;">
                     <p id="status"></p>
                 </div>
-            </div>
+            </div>  
             <div class="rooms">
-                <div class="room ">
-    <div class="room-icon temperature-box"><i class="fas fa-thermometer-half"></i></div>
-    <p>Temperature</p>
-    <p id="temperature"></p>
-</div>
-
+                <div class="room temperature-box">
+                    <div class="room-icon"><i class="fas fa-thermometer-half"></i></div>
+                    <p>Temperature</p>
+                    <p id="temperature"></p>
+                </div>
                 <div class="room">
-                    <div class="room-icon"><i class="fas fa-tint"></i></div>
-                    <p>Humidity</p>
+                    <div class="room-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <p>Voltage</p>
                     <p id="humidity"></p>
                 </div>
             </div>
             <div class="switches">
                 <div class="switch">
-                    <p>Switch 1</p>
-                    <div class="switch-icon"><i class="fas fa-toggle-on"></i></div>
+                    <div class="switch-icon"><i class="fas fa-plug"></i></div>
+                    <p>Current</p>
                     <p id="switch1"></p>
                 </div>
                 <div class="switch">
-                    <p>Switch 2</p>
-                    <div class="switch-icon"><i class="fas fa-toggle-off"></i></div>
+                    <div class="switch-icon"><i class="fas fa-lightbulb"></i></div>
+                    <p>Power</p>
                     <p id="switch2"></p>
                 </div>
             </div>
             <div class="footer">
-                <p>Quick Remote Access</p>
-                <p>Click here to connect with your phone.</p>
+                <p>Set An Automation</p>
+                <p>Click here to add voice Assistant.</p>
             </div>
         </div>
     </div>
